@@ -1,0 +1,19 @@
+{% extends 'generic.html' %}
+
+{% block content %}
+<h2>{% if libro.pk %}Editar Libro{% else %}Crear Libro{% endif %}</h2>
+
+{% if libro.pk and libro.imagen %}
+    <div class="mb-3">
+        <img src="{{ libro.imagen.url }}" alt="Imagen actual del libro" style="max-width: 200px; max-height: 200px;">
+    </div>
+{% endif %}
+
+<form method="post" enctype="multipart/form-data" novalidate>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-success">{% if libro.pk %}Actualizar{% else %}Agregar{% endif %}</button>
+    <a href="{% url 'lista_libros' %}" class="btn btn-secondary">Cancelar</a>
+</form>
+
+{% endblock %}

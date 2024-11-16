@@ -1,0 +1,18 @@
+{% extends 'generic.html' %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        Detalles del Libro
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">{{ libro.titulo }}</h5>
+        <p class="card-text">Autor: {{ libro.autor }}</p>
+        <p class="card-text">Fecha de Publicación: {{ libro.fecha_publicacion }}</p>
+        <p class="card-text">ISBN: {{ libro.isbn }}</p>
+        <a href="{% url 'libro_editar' libro.pk %}" class="btn btn-warning">Editar</a>
+        <a href="{% url 'libro_eliminar' libro.pk %}" class="btn btn-danger">Eliminar</a>
+        <a href="{% url 'lista_libros' %}" class="btn btn-secondary">Volver a la lista</a>
+    </div>
+</div>
+{% endblock %}

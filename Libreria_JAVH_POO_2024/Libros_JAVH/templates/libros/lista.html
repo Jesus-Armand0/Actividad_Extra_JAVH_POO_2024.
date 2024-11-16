@@ -1,0 +1,26 @@
+{% extends 'generic.html' %}
+{% load static %}
+
+{% block content %}
+<h1>Lista de Libros</h1>
+<div class="row">
+    {% for libro in libros %}
+    <div class="col-md-4">
+        <div class="card mb-4">
+            <img src="{% if libro.imagen %}{{ libro.imagen.url }}{% else %}{% static 'img/libro_def.jpg' %}{% endif %}" class="card-img-top" alt="{{ libro.titulo }}">
+            <div class="card-body">
+                <h5 class="card-title">{{ libro.titulo }}</h5>
+                <p class="card-text">Autor: {{ libro.autor }}</p>
+                <a href="{% url 'libro_detalle' libro.pk %}" class="btn btn-primary">Ver Detalles</a>
+                <form action="{% url 'libro_eliminar' libro.pk %}" method="post" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger" onclick="return confirm('¿Estás seguro de que deseas eliminar este libro?');">Eliminar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <p>No hay libros disponibles.</p>
+    {% endfor %}
+</div>
+{% endblock %}

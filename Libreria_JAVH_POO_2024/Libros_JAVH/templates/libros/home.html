@@ -1,0 +1,13 @@
+{% extends 'generic.html' %}
+
+{% block content %}
+<h1>Bienvenido a la Biblioteca</h1>
+<p>Crea un libro o gestiona más de los libros.</p>
+
+<!-- Añadir enlaces a las funciones de libros como botones -->
+<div class="btn-group" role="group" aria-label="Opciones de Biblioteca">
+    <a href="{% url 'lista_libros' %}" class="btn btn-primary btn-lg">Ver Lista de Libros</a>
+    <a href="{% url 'libro_crear' %}" class="btn btn-success btn-lg">Añadir Nuevo Libro</a>
+</div>
+
+{% endblock %}
